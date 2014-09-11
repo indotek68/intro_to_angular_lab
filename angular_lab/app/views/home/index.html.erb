@@ -1,0 +1,27 @@
+<h3>Change Background</h3>
+<input type="text" ng-model ="favoriteColor">
+
+
+<h3>My Favorite Movie</h3>
+<div ng-controller="IndexCtrl">
+	<label for="hide">Hide Movies</label>
+	<input id="hide" type="checkbox" ng-model="checked">
+	<div>I have movies {{movies.length}} 	<ng-pluralize count = "movies.length" when="{'1' : 'movie', 'other' : 'movies'}"</ng-pluralize></div>
+	<ul ng-hide="checked" ng-repeat="movie in movies | orderBy: 'title' | limitTo: 3">
+		<li>MOVIE: {{movie.title}}</li>
+		<li>MOVIE REVERSE: {{movie.title | reverse}}</li>
+		<li>RATING: {{movie.rating}}</li>
+		<button ng-click="removeMovie(movie)">Remove Movie</button>
+	</ul>
+	
+	<h3>Number of times pressed</h3>
+	<input type="text" ng-keypress="pressed()">
+	<h3>Pressed: {{counter}} times</h3>
+	
+	<h3>Input a word</h3>
+	<form name="myForm" action="" ng-submit="hideWord()">
+		<input type="text" value="" ng-model="wordInput" >
+		<h2 ng-hide="hideWord">{{wordInput}}</h2>
+		<button >Submit</button>
+	</form>
+</div>
